@@ -1,0 +1,138 @@
+﻿@using WebQuanAn.Models.Enums;
+@using WebQuanAn.Utility.Helpers;
+@model ProductCategoryVM
+@{
+    Layout = "_LayoutProduct";
+}
+<style>
+    .bg-top {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    #mySelect {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #333;
+        background-color: #fff;
+        width: 200px;
+    }
+        /* Tùy chỉnh option */
+        #mySelect option {
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+        }
+
+    .col-md-12.pagination {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<!-- breadcrumbs area start -->
+<div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="/client-site/assets/img/others/breadcrumbs-bg.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-top breadcrumbs_text">
+                    <h1>Sản phẩm</h1>
+                    <ul>
+                        <li><a asp-action="Index" asp-controller="Home">Trang chủ </a></li>
+                        <li> // Sản phẩm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- product page section start -->
+<div class="product_page_section mb-100">
+    <div class="container">
+        <div class="product_header">
+            <div class="section_title text-center">
+                <div>
+                    <img src="~/client-site/assets/img/logo/logo.png" />
+                </div>
+            </div>
+            <div class="product_tab_button">
+                <ul class="nav justify-content-center">
+                    @await Component.InvokeAsync("GetCategory")
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 order-1 order-lg-2">
+                <div class="product_page_wrapper">
+      
+                    <div class="product_page_gallery mt-3">
+                        <div id="productContainer">
+                            <div class="row grid__product">
+                                @foreach (var item in Model.Products)
+                                {
+                                    <div class="total-item col-lg-4 col-md-4 col-sm-6">
+                                        <div class="product_thumb">
+                                            @if (item.ProductImages != null && item.ProductImages.Count() > 0)
+                                            {
+                                                <a asp-action="Details" asp-controller="Product" asp-route-productId="@item.Id"><img src="@item.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top rounded" style="width:100px height:100px" /></a>
+                                            }
+                                            else
+                                            {
+                                                <img src="https://placehold.co/500x600/png" class="card-img-top rounded" />
+                                            }
+                                            <div class="action_links">
+                                                <ul class="d-flex justify-content-center">
+                                                    <li class="add_to_cart">
+                                                        <a href="cart.html"
+                                                           title="Thêm vào giỏ hàng">
+                                                            <span class="pe-7s-shopbag"></span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="wishlist">
+                                                        <a href="#"
+                                                           title="Yêu thích">
+                                                            <span class="pe-7s-like"></span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="quick_button">
+                                                        <a href="#" title="Quick View"
+                                                           data-bs-toggle="modal"
+                                                           data-bs-target="#modal_box">
+                                                            <span class="pe-7s-look"></span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <figcaption class="product_content text-center">
+                                            <h4>@item.Name</h4>
+                                            <div class="price_box">
+                                                <span class="current_price">@item.Price.ToVnd()</span>
+                                            </div>
+                                        </figcaption>
+
+                                    </div>
+                                }
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 pagination">
+                                    <div class="block-27">
+                                        <ul>
+                                            @for (int i = 1; i <= Model.PageInfo.TotalPages; i++)
+                                            {
+                                                <li><a asp-route-productpage="@i">@i</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

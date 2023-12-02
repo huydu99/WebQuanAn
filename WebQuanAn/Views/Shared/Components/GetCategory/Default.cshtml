@@ -1,0 +1,12 @@
+﻿@model List<Category>
+<li>
+    <a  asp-action="Index" asp-controller="Product" aria-controls="features"
+       aria-selected="false"><strong>Tất cả</strong> </a>
+</li>
+@foreach(var item in Model)
+{
+    <li>
+        <a data-toggle="tab" asp-action="Index" asp-controller="Category" asp-route-categoryId ="@item.Id" role="tab" aria-controls="sales"
+           aria-selected="false"><strong>@item.Name</strong> </a>
+    </li>
+}

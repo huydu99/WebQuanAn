@@ -1,0 +1,143 @@
+﻿@using WebQuanAn.Models.Enums;
+@using WebQuanAn.Utility.Helpers;
+@model List<CartItemVM>
+
+<style>
+	.product-thumbnail-config img {
+		height: 100px;
+	}
+
+	.add-to-cart-button {
+		display: inline-block;
+		padding: 10px 20px;
+		font-size: 16px;
+		font-weight: bold;
+		text-align: center;
+		text-decoration: none;
+		color: #fff;
+		background-color: #333333;
+		border: none;
+		border-radius: 30px;
+		transition: background-color 0.3s ease;
+		cursor: pointer;
+		margin-left: 10px;
+	}
+
+		.add-to-cart-button:hover {
+			background-color: #fc7c7c;
+			.bg-top
+
+	{
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	#mySelect {
+		padding: 8px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 14px;
+		color: #333;
+		background-color: #fff;
+		width: 200px;
+	}
+		/* Tùy chỉnh option */
+		#mySelect option {
+			font-size: 14px;
+			color: #333;
+			background-color: #fff;
+		}
+
+	.col-md-12.pagination {
+		display: flex;
+		justify-content: center;
+	}
+
+	.bg-top {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+</style>
+<style>
+	.bg-top {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+</style>
+<!-- breadcrumbs area start -->
+<div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="/client-site/assets/img/others/breadcrumbs-bg.png">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="bg-top breadcrumbs_text">
+					<h1>Yêu thích</h1>
+					<ul>
+						<li><a asp-action="Index" asp-controller="Home">Trang chủ </a></li>
+						<li> // Yêu thich</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- breadcrumbs area end -->
+<div class="wishlist-area">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<form action="#">
+					<div class="table-content table-responsive">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="product_remove">Xoá</th>
+									<th class="product-thumbnail">Hình ảnh</th>
+									<th class="cart-product-name">Sản phẩm</th>
+									<th class="product-price">Giá</th>
+									<th class="product-stock-status">Trạng thái</th>
+									<th class="cart_btn">add to cart</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td class="product_remove">
+											<a asp-action="RemoveWishList" asp-controller="Cart" asp-route-guidId="@item.GuidId">
+												<i class="pe-7s-close" title="Remove"></i>
+											</a>
+										</td>
+										<td class="product-thumbnail-config">
+											@if (item.Product.ProductImages != null && item.Product.ProductImages.Count() > 0)
+											{
+												<img src="@item.Product.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top rounded w-100" />
+											}
+											else
+											{
+												<img src="https://placehold.co/500x600/png" class="card-img-top rounded w-100" />
+											}
+										</td>
+										<td class="product-name">@item.Product.Name</td>
+										<td class="product-price"><span class="amount">@item.Product.Price.ToVnd()</span></td>
+										<td class="product-stock-status"><span class="in-stock">
+												@if (item.Product.Status)
+												{
+													<span style="color:green">@SD.InStock</span>
+
+												}
+												else
+												{
+													<span style="color:red">@SD.OutOfStock</span>
+												}
+										</span></td>
+										<td class="cart_btn"><a asp-action="Details" asp-controller="Product" asp-route-productId="@item.Product.Id">Chi tiết</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

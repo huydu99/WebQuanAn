@@ -1,0 +1,21 @@
+﻿@model ApplicationUser
+
+@if (User.Identity.IsAuthenticated)
+{
+    <li class="account_link">
+        <i class="icofont-user-alt-7"></i><a href="#"><atrong>Hi @Model.LastName<i class="bi bi-caret-down-fill"></i></atrong></a>
+        <ul class="dropdown_account_link">
+            @if (User.IsInRole("Admin"))
+            {
+                <li><a asp-action="Index" asp-controller="Dashboard" asp-area="Admin">Admin</a></li>
+            }
+            <li><a asp-action="Profile" asp-controller="Account">Thông tin</a></li>
+            <li><a asp-action="Index" asp-controller="Order">Đơn hàng</a></li>
+            <li><a asp-action="Logout" asp-controller="Account">Đăng xuất</a></li>
+        </ul>
+    </li>
+}
+else
+{
+    <a asp-action="Login" asp-controller="Account" class="text-light"><i class="bi bi-person "></i>Tài khoản</a>
+}

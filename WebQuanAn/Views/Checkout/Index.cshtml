@@ -1,0 +1,143 @@
+﻿@using WebQuanAn.Utility.Helpers;
+@model ShoppingCartVM
+
+<style>
+    .bg-top {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .add-to-cart-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #2b4174;
+        border: none;
+        border-radius: 30px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    .add-to-cart-button:hover {
+        background-color: #fc7c7c;
+    }
+
+    .bg-top {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+</style>
+<!-- breadcrumbs area start -->
+<div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="/client-site/assets/img/others/breadcrumbs-bg.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-top breadcrumbs_text">
+                    <h1>Thanh toán</h1>
+                    <ul>
+                        <li><a asp-action="Index" asp-controller="Home">Trang chủ </a></li>
+                        <li><a asp-action="Index" asp-controller="Cart"> // Giỏ hàng </a></li>
+                        <li> // Thanh toán</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="checkout-area">
+    <div class="container">
+        <form method="post">
+        <div class="row">
+            <div class="col-lg-6 col-12">
+                    <input asp-for="@Model.OrderHeader.Id" hidden />
+                    <div class="checkbox-form">
+                        <p class="text-danger">@ViewBag.ErrorCheck</p>
+                        <h3>Thông tin</h3>
+                        <div class="row">                                    
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>Họ tên <span class="required">*</span></label>
+                                    <input type="text" asp-for="OrderHeader.Name" placeholder="Họ tên" />
+                                    <span asp-validation-for="OrderHeader.Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label for="lname">Số điện thoại*</label>
+                                    <input type="text" asp-for="OrderHeader.Phone"  placeholder="Số điện thoại" />
+                                    <span asp-validation-for="OrderHeader.Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label for="lname">Địa chỉ*</label>
+                                    <input type="text" asp-for="OrderHeader.Address"  placeholder="Địa chỉ" />
+                                    <span asp-validation-for="OrderHeader.Address" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="order-notes">
+                                <div class="checkout-form-list checkout-form-list-2">
+                                    <label for="lname">Lời nhắn</label>
+                                    <textarea type="text" asp-for="OrderHeader.OrderNote" placeholder="Lời nhắn"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="your-order">
+                    <h3>Đơn hàng</h3>
+                    <div class="your-order-table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 @foreach (var item in Model.ShoppingCartList)
+                                {
+                                    <tr class="cart-item">
+                                        <td class="cart-product-name">
+                                            @item.Product.Name<strong class="product-quantity">
+                                                × @item.Quantity
+                                            </strong>
+                                        </td>
+                                        <td class="cart-product-total"><span class="amount">@item.Total.ToVnd()</span></td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr class="order-total">
+                                    <th>Tổng tiền</th>
+                                    <td><strong><span class="amount">@Model.OrderHeader.OrderTotal.ToVnd()</span></strong></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="payment-method">
+                        <div class="payment-accordion">                         
+                            <div class="order-button-payment">
+                                <button type="submit" class="add-to-cart-button m-l-2 update-cart">Đặt hàng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,73 @@
+﻿@model Contact
+
+
+<style>
+	.bg-top {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+</style>
+<!-- breadcrumbs area start -->
+<div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="/client-site/assets/img/others/breadcrumbs-bg.png">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="bg-top breadcrumbs_text">
+					<h1>Liên hệ</h1>
+					<ul>
+						<li><a href="index.html">Trang chủ </a></li>
+						<li> // Liên hệ</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- breadcrumbs area end -->
+<!-- contact section start -->
+<div class="contact_page_section mb-100">
+	<div class="container">
+		<div class="contact_details">
+			<div class="row">
+				<div class="col-lg-5 col-md-6 mt-5">
+					<div class="mt-5">
+						<img src="~/client-site/assets/img/others/contact2.png" />
+					</div>
+			
+				</div>
+				<div class="col-lg-7 col-md-6">
+					<div class="contact_form" data-bgimg="assets/img/others/contact-form-bg-shape.png">
+						<h2>Liên hệ</h2>
+						<form method="post">
+							<div class="form_input">
+								<input type="text" asp-for="Name" class="form-control" placeholder="Tên">
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+							<div class="form_input">
+								<input type="text" asp-for="Email" class="form-control" placeholder="Email">
+								<span asp-validation-for="Email" class="text-danger"></span>
+							</div>
+							<div class="form_input">
+								<input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Số điện thoại">
+								<span asp-validation-for="PhoneNumber" class="text-danger"></span>
+							</div>		
+							<div class="form_input">
+								<input type="text" asp-for="Subject" class="form-control" placeholder="Tiêu đề">
+								<span asp-validation-for="Subject" class="text-danger"></span>
+							</div>
+							<div class="form_textarea">
+								<textarea asp-for="Message" cols="30" rows="10" class="form-control" placeholder="Nội dung"></textarea>
+								<span asp-validation-for="Message" class="text-danger"></span>
+							</div>
+							<div class="form_input_btn">
+								<button type="submit" class="btn btn-link">Gửi</button>
+							</div>
+							<p class="form-message"></p>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

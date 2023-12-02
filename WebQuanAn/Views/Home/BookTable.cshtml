@@ -1,0 +1,103 @@
+﻿@model BookTableVM
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .bg-top {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .custom-select {
+            width: 100%;
+        }
+
+    </style>
+    <title>Bootstrap Table Reservation Form Template Design</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    
+    <!-- breadcrumbs area start -->
+    <div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="/client-site/assets/img/others/breadcrumbs-bg.png">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bg-top breadcrumbs_text">
+                        <h1>Đặt bàn</h1>
+                        <ul>
+                            <li><a asp-action="Index" asp-controller="Home">Trang chủ </a></li>
+                            <li> // Đặt bàn</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Table Reservation Form -->
+    <section id="book-a-table" class="book-a-table">
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 text-center">
+                        <h2>Đặt bàn</h2>
+                        <p class="mb-5 text-danger">Đặt bàn trực tuyến, tiết kiệm thời gian và không gian chờ đợi!</p>
+                    </div>
+                </div>
+                <form  method="post" role="form">             
+                    <div class="form-group">
+                        <input type="text" asp-for="Name" class="form-control" placeholder="Họ tên">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" asp-for="Email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                         <input type="number" class="form-control" asp-for="PhoneNumber" placeholder="Số điện thoại">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" asp-for="ArrivalDate" placeholder="Date">
+                    </div>
+                    <div class="form-group">
+                        <input type="time" class="form-control" asp-for="ArrivalTime" placeholder="Time">
+                    </div>
+                    <div class="form-group">
+                            <select class="form-control" style="width:100%" name="NumberOfPeople" asp-items="ViewBag.NumberOfPeople">
+                            <option disabled selected value="">Số người</option>
+                        </select>
+                    </div>
+                    <div class="form-group mt-2">
+                        <textarea class="form-control" asp-for="Message" placeholder="Lời nhắn" cols="30" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-right mt-3">Đặt bàn</button>
+                </form>
+            </div>
+            <div class = "col-md-5">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2 text-center">
+                        <h2 class="text-primary"></h2>
+                        <p class="mb-5"></p>
+                            <p class="mb-5"></p>
+                    </div>
+                </div>
+                <img src="~/client-site/assets/img/others/booktbl.jpg"/>
+            </div>
+            </div>
+
+        </div>
+    </section>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+</body>
+</html>

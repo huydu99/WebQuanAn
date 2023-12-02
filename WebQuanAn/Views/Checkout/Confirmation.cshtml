@@ -1,0 +1,65 @@
+﻿@using WebQuanAn.Utility.Helpers;
+@model ShoppingCartVM
+
+<style>
+    .bg-top {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .add-to-cart-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+        background-color: #2b4174;
+        border: none;
+        border-radius: 30px;
+        transition: background-color 0.3s ease;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    .add-to-cart-button:hover {
+            background-color: #fc7c7c;
+        }
+
+    .bg-top {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    
+    .center-text {
+        text-align: center;
+    }
+</style>
+<!-- breadcrumbs area start -->
+<div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="/client-site/assets/img/others/breadcrumbs-bg.png">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-top breadcrumbs_text">
+                    <h1>Thanh toán</h1>
+                    <ul>
+                        <li><a asp-action="Index" asp-controller="Home">Trang chủ </a></li>
+                        <li><a asp-action="Index" asp-controller="Cart"> // Giỏ hàng </a></li>
+                        <li> // Thanh toán</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="center-text">
+    <div class="alert">Bạn đã đặt hàng thành công</div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
