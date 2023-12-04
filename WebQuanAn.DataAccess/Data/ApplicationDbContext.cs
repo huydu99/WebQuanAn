@@ -28,8 +28,8 @@ namespace WebQuanAn.DataAcess.Data
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Món khai vị", Status=true ,Description="Các món khai vị"},
                 new Category { Id = 2, Name = "Món chính", Status = true, Description = "Các món ăn chính" },
-                new Category { Id = 1, Name = "Lẫu", Status = true, Description = "Các loại lẫu" },
-				new Category { Id = 2, Name = "Đồ uống", Status = true, Description = "Các loại nước uống" }
+                new Category { Id = 3, Name = "Lẫu", Status = true, Description = "Các loại lẫu" },
+				new Category { Id = 4, Name = "Đồ uống", Status = true, Description = "Các loại nước uống" }
 				);
             modelBuilder.Entity<Product>().HasData(
                 new Product
