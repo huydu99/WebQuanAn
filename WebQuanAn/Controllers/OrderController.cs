@@ -5,7 +5,7 @@ using WebQuanAn.Utility;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace WebSoccer.Controllers
+namespace WebQuanAn.Controllers
 {
     public class OrderController : Controller
     {

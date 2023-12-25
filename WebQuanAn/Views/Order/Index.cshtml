@@ -1,4 +1,7 @@
 ﻿@{
+    Layout = "_LayoutProduct";
+}
+@{
     var status = Context.Request.Query["status"];
     var pending = "text-primary";
     var approved = "text-primary";
@@ -27,7 +30,6 @@
         default:
             all = "active text-white bg-primary";
             break;
-
     }
 }
 
@@ -56,66 +58,82 @@
     table.dataTable tbody th, table.dataTable tbody td{
         font-weight:500;
     }
+
+    .bg-top {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
 </style>
 
 
-<div class="breadcrumbs">
+<!-- breadcrumbs area start -->
+<div class="breadcrumbs_aree breadcrumbs_bg mb-110" data-bgimg="/client-site/assets/img/others/breadcrumbs-bg.png">
     <div class="container">
         <div class="row">
-            <div class="col">
-                <p class="bread"><span><a asp-action="Index" asp-controller="Home">Trang chủ</a></span> / <span>Đơn hàng</span></p>
+            <div class="col-12">
+                <div class="bg-top breadcrumbs_text">
+                    <h1>Thông tin đơn hàng</h1>
+                    <ul>
+                        <li><a href="index.html">Trang chủ </a></li>
+                        <li> // Đơn hàng</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <!-- Content Wrapper START -->
 <div class="colorlib-product">
     <div class="container">
-
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-10">
-                        <ul class="list-group list-group-horizontal-sm">
-                            <li class="list-group-item @pending">
-                                <a asp-controller="Order" asp-action="Index" asp-route-status="pending">Chờ xác nhận</a>
-                            </li>
-                            <li class="list-group-item @approved">
-                                <a asp-controller="Order" asp-action="Index" asp-route-status="approved">Đã xác nhận</a>
-                            </li>
-                            <li class="list-group-item @intransit">
-                                <a asp-controller="Order" asp-action="Index" asp-route-status="intransit">Đang vận chuyển</a>
-                            </li>
-                            <li class="list-group-item @shipped">
-                                <a asp-controller="Order" asp-action="Index" asp-route-status="shipped">Đã giao</a>
-                            </li>
-                            <li class="list-group-item @cancelled">
-                                <a asp-controller="Order" asp-action="Index" asp-route-status="cancelled">Đã huỷ</a>
-                            </li>
-                            <li class="list-group-item @all">
-                                <a asp-controller="Order" asp-action="Index" asp-route-status="all">Tất cả</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="table-responsive pt-2">
-                    <table id="tblData" class="table table-hover e-commerce-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Số điện thoại</th>
-                                <th>Ngày đặt</th>
-                                <th>Trạng thái</th>
-                                <th>Tổng</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <ul class="list-group list-group-horizontal-sm">
+                    <li class="list-group-item @pending">
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="pending">Chờ xác nhận</a>
+                    </li>
+                    <li class="list-group-item @approved">
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="approved">Đã xác nhận</a>
+                    </li>
+                    <li class="list-group-item @intransit">
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="intransit">Đang vận chuyển</a>
+                    </li>
+                    <li class="list-group-item @shipped">
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="shipped">Đã giao</a>
+                    </li>
+                    <li class="list-group-item @cancelled">
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="cancelled">Đã huỷ</a>
+                    </li>
+                    <li class="list-group-item @all">
+                        <a asp-controller="Order" asp-action="Index" asp-route-status="all">Tất cả</a>
+                    </li>
+                </ul>
             </div>
         </div>
- 
+        <div class="table-responsive pt-2">
+            <table id="tblData" class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Số điện thoại</th>
+                        <th>Ngày đặt</th>
+                        <th>Trạng thái</th>
+                        <th>Tổng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br />
+<br  />
+<br />
+<br />
 
 @section Scripts{
     <script>
@@ -152,8 +170,10 @@
         Number.prototype.ToVnd = function () {
             return this.toLocaleString() + ' vnđ';
         };
+
         function loadDataTable(status) {
             datatbl = $('#tblData').DataTable({
+                debugger;
                 'ordering': true,
                 'order': [[2, 'desc']],
                 'info': false,
@@ -193,6 +213,5 @@
                 ]
             });
         }
-
     </script>
 }
